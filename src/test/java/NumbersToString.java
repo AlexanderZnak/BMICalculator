@@ -2,12 +2,17 @@ public class NumbersToString {
 
     public static String checkNumber(String[] str, String numb, int begin, int end) {
         String temp = "";
-        for (int i = 1; i <= str.length; i++) {
-            if (Integer.parseInt(numb.substring(begin, end)) == i) {
-                temp = str[i];
+            for (int i = 1; i <= str.length; i++) {
+                if (Integer.parseInt(numb.substring(begin, end)) == i) {
+                    temp = str[i];
+                }
             }
-        }
-        return temp;
+            if (temp.equals("")) {
+                return temp;
+            }
+            else {
+                return " " + temp + " ";
+            }
     }
 
     public static String getCompare(String numb, int begin, int end) {
@@ -28,6 +33,9 @@ public class NumbersToString {
         String[] ten = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
         String[] hundred = {"", "сто", "двести", "триста","четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот", "тысяча"};
         if (a == 0) {
+            return "Программа работает от 1 до 999999";
+        }
+        else if (numb.charAt(0) == '-') {
             return "Программа работает от 1 до 999999";
         }
         else if (numb.length() == 1) {
@@ -57,10 +65,10 @@ public class NumbersToString {
         else if (numb.length() == 5) {
             if (Integer.parseInt(numb.substring(0, 1)) == 1) {
                 if (Integer.parseInt(numb.substring(3, 4)) == 1) {
-                    return (checkNumber(one, numb, 0, 2) + " тысяч " + checkNumber(hundred, numb, 2, 3) + " " + checkNumber(one, numb, 3, 5)).trim();
+                    return (checkNumber(one, numb, 0, 2) + getCompare(numb, 0, 2) + checkNumber(hundred, numb, 2, 3) + " " + checkNumber(one, numb, 3, 5)).trim();
                 }
                 else {
-                    return (checkNumber(one, numb, 0, 2) + " тысяч " + checkNumber(hundred, numb, 2, 3) + " " + checkNumber(ten, numb, 3, 4) + " " + checkNumber(one, numb, 4, 5)).trim();
+                    return (checkNumber(one, numb, 0, 2) + getCompare(numb, 0, 2) + checkNumber(hundred, numb, 2, 3) + " " + checkNumber(ten, numb, 3, 4) + " " + checkNumber(one, numb, 4, 5)).trim();
                 }
             }
             else {
@@ -75,10 +83,10 @@ public class NumbersToString {
         else if (numb.length() == 6) {
             if (Integer.parseInt(numb.substring(1, 2)) == 1) {
                 if (Integer.parseInt(numb.substring(4, 5)) == 1) {
-                    return (checkNumber(hundred, numb, 0, 1) + " " + checkNumber(one, numb, 1, 3) + " тысяч " + checkNumber(hundred, numb, 3, 4) + " " + checkNumber(one, numb, 4,6)).trim();
+                    return (checkNumber(hundred, numb, 0, 1) + " " + checkNumber(one, numb, 1, 3) + getCompare(numb, 1, 3) + checkNumber(hundred, numb, 3, 4) + " " + checkNumber(one, numb, 4,6)).trim();
                 }
                 else {
-                    return (checkNumber(hundred, numb, 0, 1) + " " + checkNumber(one, numb, 1, 3) + " тысяч " + checkNumber(hundred, numb, 3, 4) + " " + checkNumber(ten, numb, 4,5) + " " + checkNumber(one, numb, 5, 6)).trim();
+                    return (checkNumber(hundred, numb, 0, 1) + " " + checkNumber(one, numb, 1, 3) + getCompare(numb, 1, 3) + checkNumber(hundred, numb, 3, 4) + " " + checkNumber(ten, numb, 4,5) + " " + checkNumber(one, numb, 5, 6)).trim();
                 }
             }
             else {
